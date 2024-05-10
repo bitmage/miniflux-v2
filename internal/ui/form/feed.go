@@ -19,7 +19,9 @@ type FeedForm struct {
 	ScraperRules                string
 	RewriteRules                string
 	BlocklistRules              string
+  BlocklistIncludeContent     bool
 	KeeplistRules               string
+  KeeplistIncludeContent      bool
 	UrlRewriteRules             string
 	Crawler                     bool
 	UserAgent                   string
@@ -48,7 +50,9 @@ func (f FeedForm) Merge(feed *model.Feed) *model.Feed {
 	feed.ScraperRules = f.ScraperRules
 	feed.RewriteRules = f.RewriteRules
 	feed.BlocklistRules = f.BlocklistRules
+	feed.BlocklistIncludeContent = f.BlocklistIncludeContent
 	feed.KeeplistRules = f.KeeplistRules
+	feed.KeeplistIncludeContent = f.KeeplistIncludeContent
 	feed.UrlRewriteRules = f.UrlRewriteRules
 	feed.Crawler = f.Crawler
 	feed.UserAgent = f.UserAgent
@@ -84,7 +88,9 @@ func NewFeedForm(r *http.Request) *FeedForm {
 		Cookie:                      r.FormValue("cookie"),
 		RewriteRules:                r.FormValue("rewrite_rules"),
 		BlocklistRules:              r.FormValue("blocklist_rules"),
+		BlocklistIncludeContent:     r.FormValue("blocklist_include_content") == "1",
 		KeeplistRules:               r.FormValue("keeplist_rules"),
+		KeeplistIncludeContent:      r.FormValue("keeplist_include_content") == "1",
 		UrlRewriteRules:             r.FormValue("urlrewrite_rules"),
 		Crawler:                     r.FormValue("crawler") == "1",
 		CategoryID:                  int64(categoryID),

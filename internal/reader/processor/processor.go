@@ -139,12 +139,18 @@ func isBlockedEntry(feed *model.Feed, entry *model.Entry) bool {
 		return compiledBlocklist.MatchString(tag)
 	})
 
-	if compiledBlocklist.MatchString(entry.URL) || compiledBlocklist.MatchString(entry.Title) || compiledBlocklist.MatchString(entry.Author) || containsBlockedTag {
+  contentBlock := false
+  if feed.BlocklistIncludeContent {
+    contentBlock = compiledBlocklist.MatchString(entry.Content)
+  }
+
+	if compiledBlocklist.MatchString(entry.URL) || compiledBlocklist.MatchString(entry.Title) || compiledBlocklist.MatchString(entry.Author) || contentBlock || containsBlockedTag {
 		slog.Debug("Blocking entry based on rule",
 			slog.String("entry_url", entry.URL),
 			slog.Int64("feed_id", feed.ID),
 			slog.String("feed_url", feed.FeedURL),
 			slog.String("rule", feed.BlocklistRules),
+			slog.Bool("include_content", feed.BlocklistIncludeContent),
 		)
 		return true
 	}
@@ -169,12 +175,18 @@ func isAllowedEntry(feed *model.Feed, entry *model.Entry) bool {
 		return compiledKeeplist.MatchString(tag)
 	})
 
-	if compiledKeeplist.MatchString(entry.URL) || compiledKeeplist.MatchString(entry.Title) || compiledKeeplist.MatchString(entry.Author) || containsAllowedTag {
+  contentMatch := false
+  if feed.KeeplistIncludeContent {
+    contentMatch = compiledKeeplist.MatchString(entry.Content)
+  }
+
+	if compiledKeeplist.MatchString(entry.URL) || compiledKeeplist.MatchString(entry.Title) || compiledKeeplist.MatchString(entry.Author) || contentMatch || containsAllowedTag {
 		slog.Debug("Allow entry based on rule",
 			slog.String("entry_url", entry.URL),
 			slog.Int64("feed_id", feed.ID),
 			slog.String("feed_url", feed.FeedURL),
 			slog.String("rule", feed.KeeplistRules),
+			slog.Bool("include_content", feed.KeeplistIncludeContent),
 		)
 		return true
 	}

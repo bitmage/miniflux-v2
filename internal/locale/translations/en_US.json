@@ -329,6 +329,8 @@
     "form.feed.label.apprise_service_urls": "Comma separated list of Apprise service URLs",
     "form.feed.label.blocklist_rules": "Block Rules",
     "form.feed.label.keeplist_rules": "Keep Rules",
+    "form.feed.label.blocklist_include_content": "Blocklist Check Content",
+    "form.feed.label.keeplist_include_content": "Keeplist Check Content",
     "form.feed.label.urlrewrite_rules": "URL Rewrite Rules",
     "form.feed.label.ignore_http_cache": "Ignore HTTP cache",
     "form.feed.label.allow_self_signed_certificates": "Allow self-signed or invalid certificates",

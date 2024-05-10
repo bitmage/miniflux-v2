@@ -39,7 +39,9 @@ type Feed struct {
 	RewriteRules                string    `json:"rewrite_rules"`
 	Crawler                     bool      `json:"crawler"`
 	BlocklistRules              string    `json:"blocklist_rules"`
+	BlocklistIncludeContent     bool      `json:"blocklist_include_content"`
 	KeeplistRules               string    `json:"keeplist_rules"`
+	KeeplistIncludeContent      bool      `json:"keeplist_include_content"`
 	UrlRewriteRules             string    `json:"urlrewrite_rules"`
 	UserAgent                   string    `json:"user_agent"`
 	Cookie                      string    `json:"cookie"`

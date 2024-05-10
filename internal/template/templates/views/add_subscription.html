@@ -89,6 +89,9 @@
                     </a>
                 </div>
                 <input type="text" name="blocklist_rules" id="form-blocklist-rules" value="{{ .form.BlocklistRules }}" spellcheck="false">
+                <div class="form-label-row">
+                    <label><input type="checkbox" name="blocklist_include_content" value="1"> {{ t "form.feed.label.blocklist_include_content" }}</label>
+                </div>
 
                 <div class="form-label-row">
                     <label for="form-keeplist-rules">
@@ -100,6 +103,10 @@
                     </a>
                 </div>
                 <input type="text" name="keeplist_rules" id="form-keeplist-rules" value="{{ .form.KeeplistRules }}" spellcheck="false">
+
+                <div class="form-label-row">
+                    <label><input type="checkbox" name="keeplist_include_content" value="1"> {{ t "form.feed.label.keeplist_include_content" }}</label>
+                </div>
 
                 <div class="form-label-row">
                     <label for="form-urlrewrite-rules">
